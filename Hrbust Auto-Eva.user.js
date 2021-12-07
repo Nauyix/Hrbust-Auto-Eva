@@ -286,7 +286,7 @@
                 //credit = credit * 10
                 credit = parseFloat((credit * 10).toFixed(10));
 
-                if (GPA === 0) {//挂科
+                if (GPA === 0&&testState !== "缓考") {//挂科
                     gpaALLWeight += 0;//加权GPA + 0
                     creditALL += credit;//学分需要加
                     if (courseType === "必修") {//必修课
@@ -294,7 +294,7 @@
                         creditRC += credit;//学分需要加
                     }
                 
-                } else if(testState !== "缓考"){
+                } else if(testState == "缓考"){
                     gpaALLWeight += (GPA * credit * 2);//加权GPA加两次，冲抵原来0分条目影响
                     creditALL += 0;//学分在第一次考试中加过
                     if (courseType === "必修") {//必修课
