@@ -186,7 +186,7 @@
                 //补考或重修，不计入
                 continue;
             }
-
+            
             //gpa = gpa * 100
             gpa = parseFloat((gpa * 100).toFixed(10));
             //credit = credit * 10
@@ -293,7 +293,13 @@
                         gpaRCWeight += 0;//加权GPA + 0
                         creditRC += credit;//学分需要加
                     }
-
+                
+                } else if(testState !== "缓考"){
+                    gpaALLWeight += (GPA * credit * 2);//加权GPA加两次，冲抵原来0分条目影响
+                    creditALL += 0;//学分在第一次考试中加过
+                    if (courseType === "必修") {//必修课
+                        gpaRCWeight += (GPA * credit*2);//加权GPA加两次，冲抵原来0分条目影响
+                        creditRC += 0;//学分需要加
                 } else {//通过
 
                     gpaALLWeight += (GPA * credit);//加权GPA + 0
